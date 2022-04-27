@@ -47,12 +47,16 @@ public class NematodeVisualiser extends PApplet
 	{
 		int length, limbs, eyes;
 		String name, gender;
-		Nematode (int len, int limb, int eye, String names, String gen) {
-			length = len;
-			limbs = limb;
-			eyes = eye;
-			name = names;
-			gender = gen;
+		Nematode (TableRow row) {
+			length = row.getInt("length");
+			limbs = row.getInt("limbs");
+			eyes = row.getInt("eyes");
+			name = row.getString("name");
+			gender = row.getString("gender");
+		}
+
+		public String toString(){
+			return this.name + "is aNematode of length" + this.length + "eye status:" + this.eyes + "gender:" + this.gender + "limb status:" + this.eyes;
 		}
 	}
 
@@ -75,12 +79,7 @@ public class NematodeVisualiser extends PApplet
 	{
 		Nemtable = loadTable("nematodes.csv", "header");
 		for (TableRow row : Nemtable.rows()) {
-			String name = row.getString("name");
-			int length = row.getInt("length");
-			int limbs = row.getInt("limbs");
-			String gender = row.getString("gender");
-			int eyes = row.getInt("eyes");
-			nemlist.add(new Nematode(length, limbs, eyes, name, gender));
+			nemlist.add(new Nematode(row));
 		}
 
 	}
