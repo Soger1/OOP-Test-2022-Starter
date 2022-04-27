@@ -38,9 +38,10 @@ public class NematodeVisualiser extends PApplet
 			}
 			fill(0);
 			noStroke();
-			square(0, 0, width + 40);
-			
+			square(0, 0, width + 40);	
 		}	
+
+
 	}
 
 	class Nematode
@@ -85,7 +86,9 @@ public class NematodeVisualiser extends PApplet
 	}
 
 
-	int sel = 3;
+	int sel = 0; // selection var
+
+
 
 	public void draw()
 	{
