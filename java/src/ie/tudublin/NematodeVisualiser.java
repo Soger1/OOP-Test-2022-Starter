@@ -13,8 +13,34 @@ public class NematodeVisualiser extends PApplet
 	{		
 		if (keyCode == LEFT)
 		{
+			if (sel - 1 <= 0)
+			{
+				sel = nemlist.size() - 1;
+			}
+			else
+			{
+				sel--;
+			}
+			fill(0);
+			noStroke();
+			square(0, 0, width + 40);
 
-		}		
+		}	
+		if (keyCode == RIGHT)
+		{
+			if (sel + 1 >= nemlist.size())
+			{
+				sel = 0;
+			}
+			else
+			{
+				sel++;
+			}
+			fill(0);
+			noStroke();
+			square(0, 0, width + 40);
+			
+		}	
 	}
 
 	class Nematode
@@ -58,6 +84,7 @@ public class NematodeVisualiser extends PApplet
 		}
 
 	}
+
 
 	int sel = 7;
 	public void draw()
