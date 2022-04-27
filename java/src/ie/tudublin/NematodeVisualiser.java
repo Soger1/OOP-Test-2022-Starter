@@ -63,15 +63,19 @@ public class NematodeVisualiser extends PApplet
 	public void draw()
 	{
 		Nematode nematode = nemlist.get(sel);
+		int lmod = (nematode.length * 30 / 2);
 		for(int i =0; i < nematode.length; i++ )
 		{
 			noFill();
 			stroke(255, 255, 255);
-			circle(width/2, height/2 + 30 * i, 30);
-
-			if (nematode.limbs == 1){
-				line(width/2 + 15, height/2 + 30 * i, width/2 + 30, height/2 + 30 * i);
-				line(width/2 - 15, height/2 + 30 * i, width/2 - 30, height/2 + 30 * i);
+			circle(width/2, height/2 + 30 * i - lmod, 30);
+			textSize(32);
+			fill(255, 255, 255);
+			text(nematode.name, width/2 - (nematode.name.length() * 32 / 4), height/2 -lmod - 60 );
+			if (nematode.limbs == 1)
+			{
+				line(width/2 + 15, height/2 + 30 * i - lmod, width/2 + 30 , height/2 + 30 * i - lmod);
+				line(width/2 - 15, height/2 + 30 * i - lmod, width/2 - 30, height/2 + 30 * i - lmod);
 			}
 		}
 
