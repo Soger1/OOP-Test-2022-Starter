@@ -59,24 +59,39 @@ public class NematodeVisualiser extends PApplet
 
 	}
 
-	int sel = 1;
+	int sel = 7;
 	public void draw()
 	{
 		Nematode nematode = nemlist.get(sel);
 		int lmod = (nematode.length * 30 / 2);
-		for(int i =0; i < nematode.length; i++ )
+		// text display
+		textSize(32);
+		fill(255, 255, 255);
+		text(nematode.name, width/2 - (nematode.name.length() * 32 / 4), height/2 -lmod - 60 );
+
+		for(int i =0; i < nematode.length; i++ ) // drawing body/limbs
 		{
 			noFill();
 			stroke(255, 255, 255);
 			circle(width/2, height/2 + 30 * i - lmod, 30);
-			textSize(32);
-			fill(255, 255, 255);
-			text(nematode.name, width/2 - (nematode.name.length() * 32 / 4), height/2 -lmod - 60 );
 			if (nematode.limbs == 1)
 			{
 				line(width/2 + 15, height/2 + 30 * i - lmod, width/2 + 30 , height/2 + 30 * i - lmod);
 				line(width/2 - 15, height/2 + 30 * i - lmod, width/2 - 30, height/2 + 30 * i - lmod);
 			}
+		}
+
+		// drawing gender
+		stroke(255, 255, 255);
+		if (nematode.gender.equals("m") || nematode.gender.equals("h"))
+		{
+			line(width/2, height / 2 + 30 * nematode.length - lmod - 15, width/2 , height / 2 + 30 * nematode.length + 5 - lmod);
+			circle(width/2, height / 2 + 30 * nematode.length + 5 - lmod +5 , 10);
+		}
+		
+		if (nematode.gender.equals("f") || nematode.gender.equals("h"))
+		{
+			circle(width /2 , height /2 + 30 * nematode.length - lmod - 30, 10);
 		}
 
 
