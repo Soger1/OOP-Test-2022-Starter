@@ -41,7 +41,6 @@ public class NematodeVisualiser extends PApplet
 		colorMode(HSB);
 		background(0);
 		smooth();
-		
 		loadNematodes();	
 	}
 	Table Nemtable;
@@ -60,9 +59,23 @@ public class NematodeVisualiser extends PApplet
 
 	}
 
-
+	int sel = 1;
 	public void draw()
 	{
+		Nematode nematode = nemlist.get(sel);
+		for(int i =0; i < nematode.length; i++ )
+		{
+			noFill();
+			stroke(255, 255, 255);
+			circle(width/2, height/2 + 30 * i, 30);
+
+			if (nematode.limbs == 1){
+				line(width/2 + 15, height/2 + 30 * i, width/2 + 30, height/2 + 30 * i);
+				line(width/2 - 15, height/2 + 30 * i, width/2 - 30, height/2 + 30 * i);
+			}
+		}
+
+
 		
 	}
 }
