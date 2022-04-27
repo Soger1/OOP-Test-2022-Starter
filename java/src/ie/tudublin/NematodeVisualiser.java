@@ -13,7 +13,7 @@ public class NematodeVisualiser extends PApplet
 	{		
 		if (keyCode == LEFT)
 		{
-			if (sel - 1 <= 0)
+			if (sel - 1 < 0)
 			{
 				sel = nemlist.size() - 1;
 			}
@@ -63,7 +63,7 @@ public class NematodeVisualiser extends PApplet
 
 	public void settings()
 	{
-		size(800, 800);
+		size(800, 800, P3D);
 	}
 
 	public void setup() 
@@ -85,16 +85,25 @@ public class NematodeVisualiser extends PApplet
 	}
 
 
-	int sel = 7;
+	int sel = 3;
+
 	public void draw()
 	{
 		Nematode nematode = nemlist.get(sel);
 		int lmod = (nematode.length * 30 / 2);
+
+		/// MIDDLE NEMOTODE
+
+		fill(0);
+		noStroke();
+		rect(width/2 -100 , 0,200 , height);
+		stroke(255, 255, 255);
+
+		pushMatrix();
 		// text display
 		textSize(32);
 		fill(255, 255, 255);
 		text(nematode.name, width/2 - (nematode.name.length() * 32 / 4), height/2 -lmod - 60 );
-
 		for(int i =0; i < nematode.length; i++ ) // drawing body/limbs
 		{
 			noFill();
@@ -130,6 +139,122 @@ public class NematodeVisualiser extends PApplet
 			circle(width / 2 + 25, height/2 - lmod - 25, 10);
 			circle(width / 2 - 25, height/2 - lmod - 25, 10);
 		}
+		popMatrix();
+
+		/// left NEMOTODE
+		int lsel = sel;
+		if (lsel - 1 <= 0)
+			{
+				lsel = nemlist.size()-1;
+			}
+			else
+			{
+				lsel--;
+			}
+		
+
+		nematode = nemlist.get(lsel);
+
+		pushMatrix();
+		translate(width/3 * -1, 0, -600);
+		// text display
+		textSize(32);
+		fill(255, 255, 255);
+		text("LEFT", width/2  - (4 * 32 / 4), height/2 -lmod - 60 );
+		for(int i =0; i < nematode.length; i++ ) // drawing body/limbs
+		{
+			noFill();
+			stroke(255, 255, 255);
+			circle(width/2, height/2 + 30 * i - lmod, 30);
+			if (nematode.limbs == 1)
+			{
+				line(width/2 + 15, height/2 + 30 * i - lmod, width/2 + 30 , height/2 + 30 * i - lmod);
+				line(width/2 - 15, height/2 + 30 * i - lmod, width/2 - 30, height/2 + 30 * i - lmod);
+			}
+		}
+
+		// drawing gender
+		stroke(255, 255, 255);
+		if (nematode.gender.equals("m") || nematode.gender.equals("h"))
+		{
+			line(width/2, height / 2 + 30 * nematode.length - lmod - 15, width/2 , height / 2 + 30 * nematode.length + 5 - lmod);
+			circle(width/2, height / 2 + 30 * nematode.length + 5 - lmod +5 , 10);
+		}
+		
+		if (nematode.gender.equals("f") || nematode.gender.equals("h"))
+		{
+			circle(width /2 , height /2 + 30 * nematode.length - lmod - 30, 10);
+		}
+
+		// drawing eyes
+
+		if (nematode.eyes == 1)
+		{
+			line(width / 2 - 10, height/2 - lmod - 10, width / 2 - 25, height/2 - lmod - 25 );
+			line(width / 2 + 10, height/2 - lmod - 10, width / 2 + 25, height/2 - lmod - 25 );
+			fill(0);
+			circle(width / 2 + 25, height/2 - lmod - 25, 10);
+			circle(width / 2 - 25, height/2 - lmod - 25, 10);
+		}
+		popMatrix();
+
+		/// right NEMOTODe
+
+		int rsel = sel;
+		if (rsel + 1 >= nemlist.size())
+			{
+				rsel = 0;
+			}
+			else
+			{
+				rsel++;
+			}
+
+		nematode = nemlist.get(rsel);
+		pushMatrix();
+		translate(width/3, 0, -600);
+		// text display
+		textSize(32);
+		fill(255, 255, 255);
+		text("RIGHT", width/2 - (4 * 32 / 4), height/2 -lmod - 60 );
+		for(int i =0; i < nematode.length; i++ ) // drawing body/limbs
+		{
+			noFill();
+			stroke(255, 255, 255);
+			circle(width/2, height/2 + 30 * i - lmod, 30);
+			if (nematode.limbs == 1)
+			{
+				line(width/2 + 15, height/2 + 30 * i - lmod, width/2 + 30 , height/2 + 30 * i - lmod);
+				line(width/2 - 15, height/2 + 30 * i - lmod, width/2 - 30, height/2 + 30 * i - lmod);
+			}
+		}
+
+		// drawing gender
+		stroke(255, 255, 255);
+		if (nematode.gender.equals("m") || nematode.gender.equals("h"))
+		{
+			line(width/2, height / 2 + 30 * nematode.length - lmod - 15, width/2 , height / 2 + 30 * nematode.length + 5 - lmod);
+			circle(width/2, height / 2 + 30 * nematode.length + 5 - lmod +5 , 10);
+		}
+		
+		if (nematode.gender.equals("f") || nematode.gender.equals("h"))
+		{
+			circle(width /2 , height /2 + 30 * nematode.length - lmod - 30, 10);
+		}
+
+		// drawing eyes
+
+		if (nematode.eyes == 1)
+		{
+			line(width / 2 - 10, height/2 - lmod - 10, width / 2 - 25, height/2 - lmod - 25 );
+			line(width / 2 + 10, height/2 - lmod - 10, width / 2 + 25, height/2 - lmod - 25 );
+			fill(0);
+			circle(width / 2 + 25, height/2 - lmod - 25, 10);
+			circle(width / 2 - 25, height/2 - lmod - 25, 10);
+		}
+		popMatrix();
+
+		
 		
 	}
 }
