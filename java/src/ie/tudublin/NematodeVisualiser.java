@@ -24,7 +24,7 @@ public class NematodeVisualiser extends PApplet
 		Nematode (int len, int limb, int eye, String names, String gen) {
 			length = len;
 			limbs = limb;
-			eye = eyes;
+			eyes = eye;
 			name = names;
 			gender = gen;
 		}
@@ -94,7 +94,16 @@ public class NematodeVisualiser extends PApplet
 			circle(width /2 , height /2 + 30 * nematode.length - lmod - 30, 10);
 		}
 
+		// drawing eyes
 
+		if (nematode.eyes == 1)
+		{
+			line(width / 2 - 10, height/2 - lmod - 10, width / 2 - 25, height/2 - lmod - 25 );
+			line(width / 2 + 10, height/2 - lmod - 10, width / 2 + 25, height/2 - lmod - 25 );
+			fill(0);
+			circle(width / 2 + 25, height/2 - lmod - 25, 10);
+			circle(width / 2 - 25, height/2 - lmod - 25, 10);
+		}
 		
 	}
 }
